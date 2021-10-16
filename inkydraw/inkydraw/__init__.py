@@ -1,4 +1,4 @@
-from inky.auto import auto
+from .draw import draw as _draw
 
-def draw():
-    print("hello wold")
+def draw(requestPath):
+    _draw(requestPath)
