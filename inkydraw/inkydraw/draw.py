@@ -1,11 +1,11 @@
 from os import path
-from inky.auto import auto
 from PIL import Image
 import time
+from inky import InkyWHAT
 
 def draw(requestPath):
     file_path = path.relpath(requestPath)
-    inky_display = auto(ask_user=False, verbose=True)
+    inky_display = InkyWHAT('red')
     with open(file_path) as f:
         lines = f.readlines()
         print(lines)
