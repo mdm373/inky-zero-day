@@ -1,33 +1,15 @@
-from os import path
-from PIL import Image
-import time
-from inky import InkyWHAT
+from .read_image import new_read_image
+from .palette import new_palette
 
-def draw(requestPath):
-    file_path = path.relpath(requestPath)
-    inky_display = InkyWHAT('red')
-    with open(file_path) as f:
-        lines = f.readlines()
-        print(lines)
 
-    colours = (inky_display.RED, inky_display.BLACK, inky_display.WHITE)
-    colour_names = (inky_display.colour, "black", "white")
-    img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
+def draw(width, height, color, mode):
+    if mode == 'demo':
+        from .draw_demo import new_demo_draw
+        palette, drawer = new_demo_draw()
+    else:
+        from .draw_inky import new_inky_draw
+        palette, drawer = new_inky_draw(color)
 
-    # Loop through the specified number of cycles and completely
-    # fill the display with each colour in turn.
-
-    for i in range(3):
-        print("Cleaning cycle %i\n" % (i + 1))
-        for j, c in enumerate(colours):
-            print("- updating with %s" % colour_names[j])
-            inky_display.set_border(c)
-            for x in range(inky_display.WIDTH):
-                for y in range(inky_display.HEIGHT):
-                    img.putpixel((x, y), c)
-            inky_display.set_image(img)
-            inky_display.show()
-            time.sleep(1)
-        print("\n")
-
-    print("Cleaning complete!")
+    read_image = new_read_image(palette)
+    image = read_image(width, height)
+    drawer(image)
