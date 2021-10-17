@@ -25,6 +25,14 @@ def write_text(image, text, size, point, color_type):
     )
 
 
+def write_rect(image, top_left, bottom_right, fill_color_type):
+    draw = ImageDraw.Draw(image)
+    draw.rectangle(
+        xy=[top_left, bottom_right],
+        fill=fill_color_type.value,
+    )
+
+
 def new_inky_draw(color, mode):
     def inky_draw(image):
         if mode == 'demo':
