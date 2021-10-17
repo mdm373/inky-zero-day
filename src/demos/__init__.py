@@ -48,4 +48,17 @@ def calendar_demo():
 
     except Exception as e:
         print(f"unexpected exception {e}")
-        draw_text(f"x.X something bad happened")
+        draw_text(
+            text=f"x.X something bad happened",
+            image=image,
+            point=(5, 5),
+            size=22,
+            color_type=PixelType.COLOR
+        )
+        draw_text(
+            text=f"{e}",
+            image=image,
+            point=(5, 40),
+            size=16,
+            color_type=PixelType.BLACK
+        )
