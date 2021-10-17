@@ -18,7 +18,7 @@ def set_pixel(image, point, color_type):
     image.putpixel(point, color_type.value)
 
 
-def draw_text(image, text, size, point, color_type):
+def draw_text(image, text, size, point, color_type, anchor="la"):
     font_path = getcwd() + '/fonts/Roboto/Roboto-Regular.ttf'
     font = ImageFont.truetype(font_path, size)
     draw = ImageDraw.Draw(image)
@@ -27,7 +27,29 @@ def draw_text(image, text, size, point, color_type):
         text=text,
         fill=color_type.value,
         font=font,
+        anchor=anchor,
     )
+
+
+def get_truncated_text(image, text, size, width):
+    font_path = getcwd() + '/fonts/Roboto/Roboto-Regular.ttf'
+    font = ImageFont.truetype(font_path, size)
+    draw = ImageDraw.Draw(image)
+    truncated = text
+    if draw.textsize(text=truncated, font=font)[0] <= width:
+        return truncated
+
+    elipse_size = draw.textsize(text="...", font=font)[0]
+
+    while True:
+        size = draw.textsize(text=truncated, font=font)[0]
+        if size <= (width - elipse_size):
+            break
+        if len(truncated) <= 0:
+            break
+        truncated = truncated[0:len(truncated) - 1]
+
+    return truncated + "..."
 
 
 def draw_rect(image, top_left, bottom_right, fill_color_type):

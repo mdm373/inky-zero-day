@@ -1,6 +1,9 @@
-from inky_draw import PixelType, new_inky_image, set_pixel, new_inky_draw, draw_text, draw_rect
+from inky_draw import PixelType, new_inky_image, set_pixel, new_inky_draw, draw_text, draw_rect, get_truncated_text
 from calendar_client import get_calendar_client
-import datetime
+from datetime import datetime
+from dateutil.parser import parse
+from dateutil.tz import gettz
+from dateutil.utils import default_tzinfo
 
 
 def checker_demo():
@@ -47,7 +50,7 @@ def calendar_demo():
 
     try:
         image = new_inky_image()
-        now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+        now = datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
         client = get_calendar_client()
         events = client.events().list(
             calendarId='primary',
@@ -56,7 +59,52 @@ def calendar_demo():
             singleEvents=True,
             orderBy='startTime',
         ).execute()
-        print(events)
+
+        day_map = {}
+        eastern = gettz('America/New York')
+        for event in events['items']:
+            start = parse(event['start']['dateTime'])
+            start_eastern = default_tzinfo(start, eastern)
+            start_day = start_eastern.strftime('%a. %B %m, %Y')
+            if start_day not in day_map:
+                day_map[start_day] = []
+            day_map[start_day].append({
+                'description': event['summary'],
+                'start': start_eastern,
+            })
+        height = 0
+        width = image.width
+        for day in day_map.items():
+            if height > image.height - 20:
+                break
+            bar_bottom_right = (width, height + 40)
+            bar_top_left = (0, height)
+            draw_rect(image, bar_top_left, bar_bottom_right, PixelType.COLOR)
+            draw_text(image, day[0], 18, (5, height + 8), PixelType.WHITE)
+            height = height + 40
+            max_width = image.width - 30
+            for event in day[1]:
+                if height > image.height - 20:
+                    break
+                description = event['description']
+                start_time = event['start'].strftime('%H:%M')
+                text = get_truncated_text(
+                    image,
+                    f"{start_time} | {description}",
+                    18,
+                    max_width,
+                )
+                draw_text(image, text, 18, (15, height + 6), PixelType.BLACK)
+                height = height + 35
+        draw_text(
+            image=image,
+            text=f"as of {datetime.now().strftime('%Y-%m-%dT%H:%M')}",
+            size=12,
+            point=(image.width, image.height),
+            color_type=PixelType.COLOR,
+            anchor='rd'
+        )
+        new_inky_draw()(image)
 
     except Exception as e:
         print(f"unexpected exception {e}")
@@ -76,3 +124,4 @@ def calendar_demo():
             color_type=PixelType.BLACK
         )
         new_inky_draw()(image)
+        raise e
