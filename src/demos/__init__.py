@@ -99,7 +99,7 @@ def calendar_demo():
         draw_text(
             image=image,
             text=f"as of {datetime.now().strftime('%Y-%m-%dT%H:%M')}",
-            size=12,
+            size=16,
             point=(image.width, image.height),
             color_type=PixelType.COLOR,
             anchor='rd'
