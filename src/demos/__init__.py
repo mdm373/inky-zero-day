@@ -32,6 +32,17 @@ def text_demo(text):
     new_inky_draw()(image)
 
 
+def multiline(text):
+    index = -1
+    multi_line = ""
+    for char in text:
+        index = index + 1
+        if index % 50 == 0 and not index == 0:
+            multi_line = f'{multi_line}\n'
+        multi_line = f'{multi_line}{char}'
+    return multi_line
+
+
 def calendar_demo():
 
     try:
@@ -51,14 +62,14 @@ def calendar_demo():
         print(f"unexpected exception {e}")
         image = new_inky_image()
         draw_text(
-            text=f"x.X something bad happened",
+            text=f"^(x.x)^ something bad happened",
             image=image,
             point=(5, 5),
             size=22,
             color_type=PixelType.COLOR
         )
         draw_text(
-            text=f"{e}",
+            text=multiline(f"{e}"),
             image=image,
             point=(5, 40),
             size=16,
