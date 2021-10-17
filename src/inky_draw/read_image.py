@@ -1,5 +1,5 @@
 import sys
-from .palette import translate, new_palette
+from .palette import translate
 from PIL import Image
 
 
@@ -7,7 +7,9 @@ def new_read_image(palette):
     def read_image(width, height):
         raw_image = sys.stdin.readline().rstrip()
         if len(raw_image) != width * height:
-            raise Exception(f"invalid raw image len {len(raw_image)}, expected {height * width} for {width}X{height}")
+            raise Exception(
+                f"invalid raw image len {len(raw_image)}, expected {height * width} for {width}X{height}"
+            )
 
         img = Image.new("P", (width, height))
         index = -1
