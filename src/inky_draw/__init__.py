@@ -1,6 +1,7 @@
 
-from PIL import Image
+from PIL import Image, ImageFont, ImageDraw
 from .pixel_type import PixelType
+from os import getcwd
 
 
 def new_inky_image(width, height):
@@ -8,8 +9,20 @@ def new_inky_image(width, height):
     return img
 
 
-def set_pixel(image, point, pixel):
-    image.putpixel(point, pixel.value)
+def set_pixel(image, point, color_type):
+    image.putpixel(point, color_type.value)
+
+
+def write_text(image, text, size, point, color_type):
+    font_path = getcwd() + '/fonts/Roboto/Roboto-Regular.ttf'
+    font = ImageFont.truetype(font_path, size)
+    draw = ImageDraw.Draw(image)
+    draw.text(
+        xy=point,
+        text=text,
+        fill=color_type.value,
+        font=font,
+    )
 
 
 def new_inky_draw(color, mode):

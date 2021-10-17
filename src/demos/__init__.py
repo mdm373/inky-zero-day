@@ -1,4 +1,4 @@
-from inky_draw import PixelType, new_inky_image, set_pixel, new_inky_draw
+from inky_draw import PixelType, new_inky_image, set_pixel, new_inky_draw, write_text
 from PIL import ImageDraw, ImageFont
 from os import getcwd
 
@@ -19,19 +19,7 @@ def checker_demo(mode, width, height, color):
 
 
 def text_demo(mode, width, height, color, text):
-    path = getcwd() + '/fonts/Roboto/Roboto-Regular.ttf'
-    print(path)
-    font = ImageFont.truetype(
-        path, 20,
-    )
     image = new_inky_image(width, height)
     drawer = new_inky_draw(color, mode)
-    draw = ImageDraw.Draw(image)
-    draw.text(
-        xy=(5, 5),
-        text=text,
-        fill=PixelType.BLACK.value,
-        font=font,
-
-    )
+    write_text(image, text, 22, (5, 5), PixelType.COLOR)
     drawer(image)
