@@ -96,9 +96,11 @@ def calendar_demo():
                 )
                 draw_text(image, text, 18, (15, height + 6), PixelType.BLACK)
                 height = height + 35
+        now = datetime.now().strftime('%Y-%m-%dT%H:%M')
+        print(f"now is {now}")
         draw_text(
             image=image,
-            text=f"as of {datetime.now().strftime('%Y-%m-%dT%H:%M')}",
+            text=f"as of {now}",
             size=16,
             point=(image.width, image.height),
             color_type=PixelType.BLACK,
