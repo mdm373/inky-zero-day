@@ -101,7 +101,7 @@ def calendar_demo():
             text=f"as of {datetime.now().strftime('%Y-%m-%dT%H:%M')}",
             size=16,
             point=(image.width, image.height),
-            color_type=PixelType.COLOR,
+            color_type=PixelType.BLACK,
             anchor='rd'
         )
         new_inky_draw()(image)
