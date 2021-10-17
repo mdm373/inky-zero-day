@@ -1,26 +1,27 @@
-from utils import get_optional_arg
-from demos import checker_demo, text_demo
+from utils import optional_arg
+from demos import checker_demo, text_demo, calendar_demo
+from calendar_client import save_calendar_tokens
+from dotenv import load_dotenv
 
 if __name__ == '__main__':
+    load_dotenv()
+
     def cmd_checker_demo():
-        checker_demo(
-            mode=get_optional_arg(2, 'inky'),
-            width=int(get_optional_arg(3, 400)),
-            height=int(get_optional_arg(4, 300)),
-            color=get_optional_arg(5, 'red'),
-        )
+        checker_demo()
 
     def cmd_text_demo():
-        text_demo(
-            text=get_optional_arg(2, 'hello'),
-            mode=get_optional_arg(3, 'inky'),
-            width=int(get_optional_arg(4, 400)),
-            height=int(get_optional_arg(5, 300)),
-            color=get_optional_arg(6, 'red'),
-        )
+        text_demo(optional_arg(2, 'Ohh, hi Mark.'))
+
+    def cmd_get_tokens():
+        save_calendar_tokens()
+
+    def cmd_show_calendar():
+        calendar_demo()
 
     commands = {
         'checker': cmd_checker_demo,
         'text': cmd_text_demo,
+        'tokens': cmd_get_tokens,
+        'calendar': cmd_show_calendar,
     }
-    commands[get_optional_arg(1, 'checker')]()
+    commands[optional_arg(1, 'text')]()
