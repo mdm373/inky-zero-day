@@ -33,8 +33,9 @@ def text_demo(text):
 
 
 def calendar_demo():
-    image = new_inky_image()
+
     try:
+        image = new_inky_image()
         now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
         client = get_calendar_client()
         events = client.events().list(
@@ -48,6 +49,7 @@ def calendar_demo():
 
     except Exception as e:
         print(f"unexpected exception {e}")
+        image = new_inky_image()
         draw_text(
             text=f"x.X something bad happened",
             image=image,
@@ -62,3 +64,4 @@ def calendar_demo():
             size=16,
             color_type=PixelType.BLACK
         )
+        new_inky_draw()(image)
