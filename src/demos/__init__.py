@@ -102,9 +102,9 @@ def calendar_demo():
             image=image,
             text=f"as of {now}",
             size=16,
-            point=(image.width, image.height),
+            point=(image.width - 100, image.height - 30),
             color_type=PixelType.BLACK,
-            anchor='rd'
+
         )
         new_inky_draw()(image)
 
