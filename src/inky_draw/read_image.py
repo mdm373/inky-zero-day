@@ -8,7 +8,7 @@ def new_read_image(palette):
         raw_image = sys.stdin.readline().rstrip()
         if len(raw_image) != width * height:
             raise Exception(
-                f"invalid raw image len {len(raw_image)}, expected {height * width} for {width}X{height}"
+                f"invalid raw image len {len(raw_image)}, expected {height * width} for {width}X{height}",
             )
 
         img = Image.new("P", (width, height))
