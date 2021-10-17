@@ -1,18 +1,15 @@
 from PIL import Image
 import time
-from .palette import new_palette
 
 
 def new_inky_draw(color):
     from inky import InkyWHAT
     inky_display = InkyWHAT(color)
-    palette = new_palette(inky_display.BLACK, inky_display.WHITE, inky_display.RED)  # todo parameterize color properly
 
     def draw(image):
         inky_display.set_image(image)
         inky_display.show()
-
-    return palette, draw
+    return draw
 
 
 def clear():
