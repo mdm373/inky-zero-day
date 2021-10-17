@@ -2,6 +2,6 @@ from enum import Enum
 
 
 class PixelType(Enum):
-    BLACK = 0
-    WHITE = 1
+    WHITE = 0
+    BLACK = 1
     COLOR = 2
