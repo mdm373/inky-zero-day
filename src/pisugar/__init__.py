@@ -21,5 +21,5 @@ def get_battery():
     try:
         return f"{math.floor(float(parts[1]))}%"
     except Exception as e:
-        print("bat error" + e)
+        print(f"bat error {e}")
         return "err: exception"
