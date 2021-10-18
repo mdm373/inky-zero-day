@@ -102,7 +102,7 @@ def calendar_demo():
             image=image,
             text=f"as of {now}",
             size=12,
-            point=(image.width - 150, image.height - 15),
+            point=(image.width - 160, image.height - 15),
             color_type=PixelType.COLOR,
         )
         draw_text(

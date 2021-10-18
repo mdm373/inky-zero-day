@@ -50,7 +50,7 @@ def get_truncated_text(image, text, size, width):
             break
         truncated = truncated[0:len(truncated) - 1]
 
-    return truncated + "..."
+    return truncated.strip() + "..."
 
 
 def draw_rect(image, top_left, bottom_right, fill_color_type):

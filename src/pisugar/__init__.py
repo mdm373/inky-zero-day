@@ -8,7 +8,6 @@ def get_battery():
     if not exists(file_name):
         return "err: no bat file"
 
-    content = None
     with open(file_name) as f:
         content = f.readlines()
     if len(content) < 1:
