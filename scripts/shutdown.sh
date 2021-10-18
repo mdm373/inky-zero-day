@@ -1,0 +1,1 @@
+sudo shutdown +5 "inkycal is shutting  things down"
