@@ -18,4 +18,8 @@ def get_battery():
     if len(parts) < 2:
         return "err: no bat parts"
 
-    return f"{math.floor(float(parts[1]))}%"
+    try:
+        return f"{math.floor(float(parts[1]))}%"
+    except Exception as e:
+        print("bat error" + e)
+        return "err: exception"
