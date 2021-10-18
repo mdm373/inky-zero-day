@@ -4,18 +4,18 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
+from utils import install_path
 
 
-# If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 
-def get_temp_dir():
-    return f"{os.getcwd()}/.temp"
+def temp_dir():
+    return f"{install_path()}/.temp"
 
 
 def get_calendar_client():
-    tokens_file = f"{get_temp_dir()}/token.json"
+    tokens_file = f"{temp_dir()}/token.json"
     if not os.path.exists(tokens_file):
         msg = f"unable to generate credentials. tokens file not found at {tokens_file}"
         raise Exception(msg)
@@ -33,16 +33,16 @@ def get_calendar_client():
 
 
 def save_calendar_tokens():
-    creds_file = f"{get_temp_dir()}/credentials.json"
+    creds_file = f"{temp_dir()}/credentials.json"
     if not os.path.exists(creds_file):
         raise Exception(
             f"unable to generate tokens, creds file not found at {creds_file}")
 
     flow = InstalledAppFlow.from_client_secrets_file(
-        f"{get_temp_dir()}/credentials.json", SCOPES,
+        f"{temp_dir()}/credentials.json", SCOPES,
     )
     creds = flow.run_local_server(port=0)
-    tokens_file = f"{get_temp_dir()}/token.json"
-    with open(f"{get_temp_dir()}/token.json", 'w') as token:
+    tokens_file = f"{temp_dir()}/token.json"
+    with open(f"{temp_dir()}/token.json", 'w') as token:
         token.write(creds.to_json())
     print(f"saved tokens to {tokens_file}")

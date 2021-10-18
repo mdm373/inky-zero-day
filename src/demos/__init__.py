@@ -75,7 +75,7 @@ def calendar_demo():
         height = 0
         width = image.width
         for day in day_map.items():
-            if height > image.height - 20:
+            if height > (image.height - 55):
                 break
             bar_bottom_right = (width, height + 40)
             bar_top_left = (0, height)
@@ -84,7 +84,7 @@ def calendar_demo():
             height = height + 40
             max_width = image.width - 30
             for event in day[1]:
-                if height > image.height - 20:
+                if height > (image.height - 50):
                     break
                 description = event['description']
                 start_time = event['start'].strftime('%H:%M')
@@ -97,7 +97,6 @@ def calendar_demo():
                 draw_text(image, text, 18, (15, height + 6), PixelType.BLACK)
                 height = height + 35
         now = datetime.now().strftime('%Y-%m-%dT%H:%M')
-        print(f"now is {now}")
         draw_text(
             image=image,
             text=f"as of {now}",

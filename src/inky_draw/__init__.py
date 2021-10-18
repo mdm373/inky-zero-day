@@ -1,15 +1,14 @@
 
 from PIL import Image, ImageFont, ImageDraw
 from .pixel_type import PixelType
-from os import getcwd
-from utils import optional_environ
+from utils import optional_environ, install_path
 
 
 def new_inky_image(width=0, height=0):
     if width == 0:
-        width = int(optional_environ('INKY_WIDTH', '400'))
+        width = int(optional_environ('INKY_DRAW_WIDTH', '400'))
     if height == 0:
-        height = int(optional_environ('INKY_HEIGHT', '300'))
+        height = int(optional_environ('INKY_DRAW_HEIGHT', '300'))
     img = Image.new("P", (width, height))
     return img
 
@@ -19,7 +18,7 @@ def set_pixel(image, point, color_type):
 
 
 def draw_text(image, text, size, point, color_type, anchor="la"):
-    font_path = getcwd() + '/fonts/Roboto/Roboto-Regular.ttf'
+    font_path = install_path() + '/fonts/Roboto/Roboto-Regular.ttf'
     font = ImageFont.truetype(font_path, size)
     draw = ImageDraw.Draw(image)
     draw.text(
@@ -32,7 +31,7 @@ def draw_text(image, text, size, point, color_type, anchor="la"):
 
 
 def get_truncated_text(image, text, size, width):
-    font_path = getcwd() + '/fonts/Roboto/Roboto-Regular.ttf'
+    font_path = install_path() + '/fonts/Roboto/Roboto-Regular.ttf'
     font = ImageFont.truetype(font_path, size)
     draw = ImageDraw.Draw(image)
     truncated = text
@@ -62,9 +61,9 @@ def draw_rect(image, top_left, bottom_right, fill_color_type):
 
 def new_inky_draw(color='', mode=''):
     if len(color) == 0:
-        color = optional_environ('INKY_COLOR', 'red')
+        color = optional_environ('INKY_DRAW_COLOR', 'red')
     if len(mode) == 0:
-        mode = optional_environ('INKY_MODE', 'inky')
+        mode = optional_environ('INKY_DRAW_MODE', 'inky')
 
     def inky_draw(image):
         if mode == 'demo':

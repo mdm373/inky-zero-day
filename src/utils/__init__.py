@@ -9,3 +9,7 @@ def optional_arg(index, default):
 
 def optional_environ(name, default):
     return default if name not in os.environ else os.environ[name]
+
+
+def install_path():
+    return optional_environ('INKY_CAL_INSTALL', os.getcwd())
