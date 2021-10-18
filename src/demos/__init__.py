@@ -4,6 +4,7 @@ from datetime import datetime
 from dateutil.parser import parse
 from dateutil.tz import gettz
 from dateutil.utils import default_tzinfo
+from pisugar import get_battery
 
 
 def checker_demo():
@@ -101,9 +102,17 @@ def calendar_demo():
             image=image,
             text=f"as of {now}",
             size=12,
-            point=(image.width - 140, image.height - 15),
+            point=(image.width - 5, image.height - 5),
             color_type=PixelType.COLOR,
-
+            anchor='rd',
+        )
+        draw_text(
+            image=image,
+            text=f"bat: {get_battery()}",
+            size=12,
+            point=(5, image.height),
+            color_type=PixelType.COLOR,
+            anchor='ld',
         )
         new_inky_draw()(image)
 
