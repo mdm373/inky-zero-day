@@ -1,0 +1,1 @@
+0 * * * * cd /home/pi/projects/inkycal && sh ./scripts/update_calendar.sh

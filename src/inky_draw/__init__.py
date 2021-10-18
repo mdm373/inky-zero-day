@@ -3,6 +3,8 @@ from PIL import Image, ImageFont, ImageDraw
 from .pixel_type import PixelType
 from utils import optional_environ, install_path
 
+font_file = '/fonts/Ubuntu/Ubuntu-Bold.ttf'
+
 
 def new_inky_image(width=0, height=0):
     if width == 0:
@@ -18,7 +20,7 @@ def set_pixel(image, point, color_type):
 
 
 def draw_text(image, text, size, point, color_type, anchor="la"):
-    font_path = install_path() + '/fonts/Roboto/Roboto-Regular.ttf'
+    font_path = install_path() + font_file
     font = ImageFont.truetype(font_path, size)
     draw = ImageDraw.Draw(image)
     draw.text(
@@ -31,7 +33,7 @@ def draw_text(image, text, size, point, color_type, anchor="la"):
 
 
 def get_truncated_text(image, text, size, width):
-    font_path = install_path() + '/fonts/Roboto/Roboto-Regular.ttf'
+    font_path = install_path() + font_file
     font = ImageFont.truetype(font_path, size)
     draw = ImageDraw.Draw(image)
     truncated = text
