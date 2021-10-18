@@ -102,17 +102,15 @@ def calendar_demo():
             image=image,
             text=f"as of {now}",
             size=12,
-            point=(image.width - 5, image.height - 5),
+            point=(image.width - 150, image.height - 15),
             color_type=PixelType.COLOR,
-            anchor='rd',
         )
         draw_text(
             image=image,
             text=f"bat: {get_battery()}",
             size=12,
-            point=(5, image.height - 5),
+            point=(5, image.height - 15),
             color_type=PixelType.COLOR,
-            anchor='ld',
         )
         new_inky_draw()(image)
 
