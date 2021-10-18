@@ -110,7 +110,7 @@ def calendar_demo():
             image=image,
             text=f"bat: {get_battery()}",
             size=12,
-            point=(5, image.height),
+            point=(5, image.height - 5),
             color_type=PixelType.COLOR,
             anchor='ld',
         )
