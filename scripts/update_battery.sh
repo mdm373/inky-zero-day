@@ -1,0 +1,1 @@
+echo "get battery" | ncat -q 0 "${1}" 8423 > ./.temp/battery.txt
