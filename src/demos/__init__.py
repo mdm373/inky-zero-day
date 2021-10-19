@@ -66,7 +66,7 @@ def calendar_demo():
         for event in events['items']:
             start = parse(event['start']['dateTime'])
             start_eastern = default_tzinfo(start, eastern)
-            start_day = start_eastern.strftime('%a. %B %m, %Y')
+            start_day = start_eastern.strftime('%a. %B %d, %Y')
             if start_day not in day_map:
                 day_map[start_day] = []
             day_map[start_day].append({
