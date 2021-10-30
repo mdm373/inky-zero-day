@@ -1,5 +1,5 @@
 
-rm ./.temp/battery.txt
+rm ./.temp/battery.txt -f
 echo "updating battery value"
 COUNT=0
 echo "get battery" | nc -q 0 localhost 8423 > ./.temp/battery.txt
