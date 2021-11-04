@@ -3,6 +3,7 @@ from demos import checker_demo, text_demo, calendar_demo
 from calendar_client import save_calendar_tokens
 from dotenv import load_dotenv
 from pisugar import get_battery
+from creds_server import serve
 
 if __name__ == '__main__':
     load_dotenv()
@@ -22,11 +23,15 @@ if __name__ == '__main__':
     def cmd_battery():
         print(get_battery())
 
+    def cmd_creds_server():
+        serve()
+
     commands = {
         'checker': cmd_checker_demo,
         'text': cmd_text_demo,
         'tokens': cmd_get_tokens,
         'calendar': cmd_show_calendar,
         'battery': cmd_battery,
+        'serve': cmd_creds_server,
     }
     commands[optional_arg(1, 'text')]()
