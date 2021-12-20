@@ -8,4 +8,4 @@ python3 -m pip install python-dateutil
 python3 -m pip install flask
 python3 -m pip install Flask-RESTful
 mkdir .temp
-cp -n .env_shadow .env
+cp -n ./scripts/.env_shadow .env

@@ -4,7 +4,7 @@ from datetime import datetime
 from dateutil.parser import parse
 from dateutil.tz import gettz
 from dateutil.utils import default_tzinfo
-from pisugar import get_battery
+from utils import optional_environ
 
 
 def checker_demo():
@@ -62,7 +62,7 @@ def calendar_demo():
         ).execute()
 
         day_map = {}
-        eastern = gettz('America/New York')
+        eastern = gettz(optional_environ('TIMEZONE', 'America/New York'))
         for event in events['items']:
             start = parse(event['start']['dateTime'])
             start_eastern = default_tzinfo(start, eastern)
@@ -103,13 +103,6 @@ def calendar_demo():
             text=f"as of {now}",
             size=12,
             point=(image.width - 160, image.height - 15),
-            color_type=PixelType.COLOR,
-        )
-        draw_text(
-            image=image,
-            text=f"bat: {get_battery()}",
-            size=12,
-            point=(5, image.height - 15),
             color_type=PixelType.COLOR,
         )
         new_inky_draw()(image)

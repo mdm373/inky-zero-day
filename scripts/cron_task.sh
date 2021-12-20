@@ -1,3 +1,5 @@
-sh ./scripts/update_calendar.sh
-sh ./scripts/schedule_reboot.sh
-sh ./scripts/shutdown.sh
+while true
+do
+  sh ./scripts/update_calendar.sh
+  sleep 1h
+done

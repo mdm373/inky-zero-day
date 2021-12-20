@@ -8,4 +8,4 @@ python -m pip install flask --user
 python -m pip install Flask-RESTful --user
 
 mkdir .temp
-cp -n .env_shadow .env
+cp -n ./scripts/.env_shadow .env
