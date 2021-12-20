@@ -12,10 +12,10 @@ SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 
 def request():
+    host = optional_environ(
+        'CREDS_HOST',
+        "http://localhost:5000")
     try:
-        host = optional_environ(
-            'CREDS_HOST',
-            "http://localhost:5000")
         resp = requests.get(f"{host}/credentials")
         if resp.status_code != 200:
             raise Exception('failed to query credentials')
