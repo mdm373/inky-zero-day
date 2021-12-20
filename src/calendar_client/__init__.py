@@ -12,13 +12,16 @@ SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 
 def request():
-    host = optional_environ(
-        'CREDS_HOST',
-        "http://localhost:5000")
-    resp = requests.get(f"{host}/credentials")
-    if resp.status_code != 200:
-        raise Exception('failed to query credentials')
-    return json.dumps(resp.json())
+    try:
+        host = optional_environ(
+            'CREDS_HOST',
+            "http://localhost:5000")
+        resp = requests.get(f"{host}/credentials")
+        if resp.status_code != 200:
+            raise Exception('failed to query credentials')
+        return json.dumps(resp.json())
+    except Exception as e:
+        raise f"Failed to request authentication from {host}. Confirm auth server running. See READ_ME.md for help." from e
 
 
 def temp_dir():
