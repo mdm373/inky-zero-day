@@ -2,7 +2,7 @@ from utils import optional_arg
 from commands import checker_demo, text_demo, calendar_demo
 from calendar_client import save_calendar_tokens
 from dotenv import load_dotenv
-from creds_server import serve
+from auth_server import serve
 
 if __name__ == '__main__':
     load_dotenv()

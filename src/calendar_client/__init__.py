@@ -12,9 +12,10 @@ SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 
 def request():
+    port = optional_environ('CREDS_PORT', '5000')
     host = optional_environ(
         'CREDS_HOST',
-        "http://localhost:5000")
+        f"http://localhost:{port}")
     try:
         resp = requests.get(f"{host}/credentials")
         if resp.status_code != 200:
