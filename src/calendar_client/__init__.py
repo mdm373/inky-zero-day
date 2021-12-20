@@ -21,7 +21,8 @@ def request():
             raise Exception('failed to query credentials')
         return json.dumps(resp.json())
     except Exception as e:
-        raise f"Failed to request authentication from {host}. Confirm auth server running. See READ_ME.md for help." from e
+        raise Exception(
+            f"Failed to request authentication from {host}. Confirm auth server running. See READ_ME.md for help.") from e
 
 
 def temp_dir():
