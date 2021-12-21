@@ -7,5 +7,4 @@ python -m pip install python-dateutil --user
 python -m pip install flask --user
 python -m pip install Flask-RESTful --user
 
-mkdir .temp
 cp -n ./scripts/.env_shadow .env

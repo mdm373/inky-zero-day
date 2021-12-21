@@ -1,1 +1,0 @@
-@reboot /home/pi/projects/inkycal && sh ./scripts/cron_task.sh
