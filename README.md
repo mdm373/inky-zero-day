@@ -4,14 +4,18 @@
 
 ## What's this thing?
 
-**Inky Zero Day** is a Raspberry Pi / 3D Printing maker project. Your desktop will act as an "authorization server", running a small Flask app to handle authorization requests from the Pi. In response to auth requests, the server will pop an OAuth consent browser window on your desktop, prompting you to authorize the Pi for access to your calendar. Once authorized,  the Pi will then use those credentials to grab your upcoming events and paint them to the e-ink InkyWhat display. The Pi repeats this process indefinitely every hour on startup with cached credentials where possible. 
+**Inky Zero Day** is a Raspberry Pi / 3D Printing maker project.
+Your desktop will act as an "authorization server", running a small Flask app to handle authorization requests from the Pi.
+In response to auth requests, the server will pop an OAuth consent browser window on your desktop, prompting you to authorize the Pi for access to your Google Calendar.
+Once authorized, the Pi will then use those credentials to grab your upcoming events and paint them to the e-ink InkyWhat display.
+The Pi repeats this process indefinitely every hour on startup with cached credentials where possible. 
 
 ## Why did you do this?
 Inspired after seeing [MagicInkCal](https://github.com/speedyg0nz/MagInkCal), I put together this project as a chance to tinker and learn a couple of new skills (Fusion360, Python, Google's Calendar API). 
 
 ## How can I make one too?
 
-Follow the following steps to bake your very own **Inky Zero Day** from scratch. 
+Follow these steps to bake your very own **Inky Zero Day** from scratch. 
 
 > 💬 All scripts under [scripts](./scripts) from the repo root assume they are being run from the repo root.
 
@@ -32,7 +36,7 @@ In addition to a 3D printer, a spool of your favorite color of PLA and some sold
 
 ### Running the Auth Server
 
-*First, we need our desktop to act as an authentication server so that it can pop an OAuth consent screen for the Google Calendar on behalf of our Pi*
+*First, we need our desktop to act as an authentication server so that it can pop an OAuth consent screen for your Google Calendar events on behalf of the Pi*
 
  * Clone this repo onto your computer and install Python3 if you haven't already.
 
@@ -44,7 +48,7 @@ In addition to a 3D printer, a spool of your favorite color of PLA and some sold
 
 *Next, we need to create an application with Google Cloud so that our Pi can request events from our Google Calendar*
 
-* Create a new app on the [Google Cloud Developer Console](https://console.cloud.google.com). Enable the [Calendar API](https://console.cloud.google.com/apis/library/calendar-json.googleapis.com). Enable OAuth for the application with the following scopes:
+* Create a new app on Google's [Cloud Developer Console](https://console.cloud.google.com). Enable the [Calendar API](https://console.cloud.google.com/apis/library/calendar-json.googleapis.com) before enabling OAuth for the application with the following scopes:
   * `.../auth/calendar.readonly`
   * `.../auth/calendar.calendarlist.readonly`
 
@@ -57,10 +61,10 @@ In addition to a 3D printer, a spool of your favorite color of PLA and some sold
 ### Assembling the Pi
 *Last, lets put the actual calendar together so that we can finally call this thing done.*
 
-* Unfortunately, Pi Zero's omit a GPIO header out of the box. To wire up the InkyWhat to your Pi you'll need to solder on a GPIO header or find a GPIO solderless alternative
+* Sadly, Pi Zeros omit a GPIO header out of the box. To wire up the InkyWhat to your Pi you'll need to solder on a GPIO header or find a GPIO solderless alternative
 
 * Wire the InkyWhat's GPIO to the Pi following their [published pinout](https://pinout.xyz/pinout/inky_what).
-  * See the provided [reference image](./images/gpio-reference.jpg) for another example.
+  * See the provided [reference image](./raw/main/images/gpio-reference.jpg) for another example.
 
 * 3D print the case using the [STL model](./models/) files provided.
 
