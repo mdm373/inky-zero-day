@@ -64,7 +64,7 @@ In addition to a 3D printer, a spool of your favorite color of PLA and some sold
 * Sadly, Pi Zeros omit a GPIO header out of the box. To wire up the InkyWhat to your Pi you'll need to solder on a GPIO header or find a GPIO solderless alternative
 
 * Wire the InkyWhat's GPIO to the Pi following their [published pinout](https://pinout.xyz/pinout/inky_what).
-  * See the provided [reference image](./raw/main/images/gpio-reference.jpg) for another example.
+  * See the provided [reference image](./images/gpio-reference.jpg) for another example.
 
 * 3D print the case using the [STL model](./models/) files provided.
 
@@ -81,7 +81,7 @@ In addition to a 3D printer, a spool of your favorite color of PLA and some sold
 * Run the client automatically on reboot by adding the following entry to crontab `sudo crontab -e`
 
   ```bash
-  @reboot /your/repo/root/here && sh ./scripts/cron_task.sh
+  @reboot [RepoRoot] && sh ./scripts/cron_task.sh
   ```
 
 ### Run it!
