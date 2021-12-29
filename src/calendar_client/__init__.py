@@ -17,7 +17,7 @@ def request():
         'CREDS_HOST',
         f"http://localhost:{port}")
     try:
-        resp = requests.get(f"{host}/credentials")
+        resp = requests.get(f"{host}:{port}/credentials")
         if resp.status_code != 200:
             raise Exception('failed to query credentials')
         return json.dumps(resp.json())
