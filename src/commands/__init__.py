@@ -64,6 +64,7 @@ def calendar_demo():
         day_map = {}
         eastern = gettz(optional_environ('TIMEZONE', 'America/New York'))
         for event in events['items']:
+            print(event['start'])
             start = None
             if hasattr(event['start'], 'dateTime'):
                 start = parse(event['start']['dateTime'])
