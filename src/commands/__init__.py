@@ -65,9 +65,9 @@ def calendar_demo():
         eastern = gettz(optional_environ('TIMEZONE', 'America/New York'))
         for event in events['items']:
             start = None
-            if event['start']['dateTime'] is not None:
+            if hasattr(event['start'], 'dateTime'):
                 start = parse(event['start']['dateTime'])
-            elif event['start']['date'] is not None:
+            elif hasattr(event['start'], 'date'):
                 start = parse(event['start']['date'])
 
             if start is None:
