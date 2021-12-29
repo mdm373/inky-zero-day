@@ -66,9 +66,9 @@ def calendar_demo():
         for event in events['items']:
             print(event['start'])
             start = None
-            if hasattr(event['start'], 'dateTime'):
+            if 'dateTime' in event['start']:
                 start = parse(event['start']['dateTime'])
-            elif hasattr(event['start'], 'date'):
+            elif 'date' in event['start']:
                 start = parse(event['start']['date'])
 
             if start is None:
