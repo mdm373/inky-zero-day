@@ -64,9 +64,15 @@ def calendar_demo():
         day_map = {}
         eastern = gettz(optional_environ('TIMEZONE', 'America/New York'))
         for event in events['items']:
-            print(event)
-            print(event['start'])
-            start = parse(event['start']['dateTime'])
+            start = None
+            if event['start']['dateTime'] is not None:
+                start = parse(event['start']['dateTime'])
+            elif event['start']['date'] is not None:
+                start = parse(event['start']['date'])
+
+            if start is None:
+                continue
+
             start_eastern = default_tzinfo(start, eastern)
             start_day = start_eastern.strftime('%a. %B %d, %Y')
             if start_day not in day_map:
