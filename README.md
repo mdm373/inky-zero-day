@@ -2,6 +2,7 @@
 
 > Your Google Calendar for the next **day**. Running on a Raspberry **Zero**. Displayed with **Inky**What.
 
+![Timelapse](https://i.imgur.com/wspeOa3.gif | width=100)
 ## What's this thing?
 
 **Inky Zero Day** is a Raspberry Pi / 3D Printing maker project.
