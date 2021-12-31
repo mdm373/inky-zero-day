@@ -2,7 +2,11 @@
 
 > Your Google Calendar for the next **day**. Running on a Raspberry **Zero**. Displayed with **Inky**What.
 
-![Timelapse](https://i.imgur.com/wspeOa3.gif | width=100)
+<img src="https://i.imgur.com/4WmQazv.jpg" alt="Case Front" width="300">
+<img src="https://i.imgur.com/S7lRaVS.jpg" alt="Case Open" width="300">
+<img src="https://i.imgur.com/wspeOa3.gif" alt="Timelapse" width="300">
+
+
 ## What's this thing?
 
 **Inky Zero Day** is a Raspberry Pi / 3D Printing maker project.
@@ -65,7 +69,6 @@ In addition to a 3D printer, a spool of your favorite color of PLA and some sold
 * Sadly, Pi Zeros omit a GPIO header out of the box. To wire up the InkyWhat to your Pi you'll need to solder on a GPIO header or find a GPIO solderless alternative
 
 * Wire the InkyWhat's GPIO to the Pi following their [published pinout](https://pinout.xyz/pinout/inky_what).
-  * See the provided [reference image](./images/gpio-reference.jpg) for another example.
 
 * 3D print the case using the [STL model](./models/) files provided.
 
