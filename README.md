@@ -4,7 +4,8 @@
 
 <img src="https://i.imgur.com/4WmQazv.jpg" alt="Case Front" width="300">
 <img src="https://i.imgur.com/S7lRaVS.jpg" alt="Case Open" width="300">
-<img src="https://i.imgur.com/wspeOa3.gif" alt="Timelapse" width="300">
+
+[Timelapse](https://i.imgur.com/wspeOa3.gif)
 
 
 ## What's this thing?
